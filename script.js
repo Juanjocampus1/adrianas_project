@@ -6,8 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
         redirigirSegunRol(rol);
     }
 
-    // Si no hay sesión, bloquear el acceso a usuario.html o admin.html
-    if (!rol && (window.location.pathname.includes("usuario.html") || window.location.pathname.includes("admin.html"))) {
+    // Bloquear acceso a usuario.html, admin.html y tecnico.html si no hay sesión activa
+    if (!rol && (window.location.pathname.includes("usuario.html") ||
+        window.location.pathname.includes("admin.html") ||
+        window.location.pathname.includes("tecnico.html"))) {
         window.location.href = "index.html";
     }
 });
@@ -17,7 +19,8 @@ document.getElementById("loginForm")?.addEventListener("submit", function(event)
 
     const usuarios = {
         "user1": { password: "password1", rol: "usuario" },
-        "admin1": { password: "adminpass", rol: "admin" }
+        "admin1": { password: "adminpass", rol: "admin" },
+        "tech1": { password: "techpass", rol: "tech" }
     };
 
     let usuario = document.getElementById("usuario").value.trim();
@@ -35,7 +38,8 @@ document.getElementById("loginForm")?.addEventListener("submit", function(event)
 function redirigirSegunRol(rol) {
     let paginas = {
         "usuario": "usuario.html",
-        "admin": "admin.html"
+        "admin": "admin.html",
+        "tech": "tecnico.html"
     };
 
     if (paginas[rol]) {
