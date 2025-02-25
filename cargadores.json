@@ -1,10 +1,8 @@
-{
-  "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true
-  }
-}
+[
+  { "id": 1, "tipo": "rápido", "ubicacion": [40.4168, -3.7038], "estado": "libre", "nivel_bateria": 80, "tiempo_estimado": 30 },
+  { "id": 2, "tipo": "estándar", "ubicacion": [40.4128, -3.7100], "estado": "ocupado", "nivel_bateria": 50, "tiempo_estimado": 60 },
+  { "id": 3, "tipo": "compatible", "ubicacion": [40.4200, -3.7050], "estado": "en reparación", "nivel_bateria": 20, "tiempo_estimado": 90},
+  { "id": 4, "tipo": "rápido", "ubicacion": [40.4150, -3.7000], "estado": "libre", "nivel_bateria": 100, "tiempo_estimado": 30 },
+  { "id": 5, "tipo": "estándar", "ubicacion": [40.4100, -3.7100], "estado": "ocupado", "nivel_bateria": 70, "tiempo_estimado": 60 },
+  { "id": 6, "tipo": "compatible", "ubicacion": [40.4200, -3.7000], "estado": "en reparación", "nivel_bateria": 40, "tiempo_estimado": 90}
+]

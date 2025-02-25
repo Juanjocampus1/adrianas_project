@@ -1,10 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="wrapper" ng-app="myApp" ng-controller="mycontroller">
+
+  <div class="titleContainer">
+    <h2>Employee Information </h2>
+    <input class="inputtext" ng-model="filterItem" placeholder="search..">
+  </div>
+  <div class="table-container">
+    <table class="main_table">
+
+      <tr class="table_head">
+        <th></th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Status</th>
+      </tr>
+
+      <tbody>
+      <tr class="rowItem" ng-repeat="x in data | filter:filterItem">
+        <td><img class="middle propic" ng-src={{x.profileImage}}/></td>
+        <td>{{x.name}}</td>
+        <td>{{x.role}}</td>
+        <td class={{x.status}}>{{x.status}}</td>
+        <td><img class="icon" src="https://cdn4.iconfinder.com/data/icons/standard-free-icons/100/Setting-32.png"></td>
+        <td><img class="icon" src="http://downloadicons.net/sites/default/files/closed18-74703.png" ng-click="removeItem($index)"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

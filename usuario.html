@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa de Cargadores</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-$END$
+
+<h1 class="titulo">Mapa de Cargadores</h1>
+<div id="map" style="height: 400px; width: 80%; margin: auto; border-radius: 10px;"></div>
+
+<button onclick="cerrarSesion()">Cerrar Sesión</button>
+
+<!-- Modal de Información -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarModal()">&times;</span>
+    <h2>Detalles del Cargador</h2>
+    <p id="infoCargador"></p>
+    <button id="reservarBtn" class="button green" style="display: none;">Reservar</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
+
