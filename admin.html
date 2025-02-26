@@ -1,111 +1,125 @@
-<!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AdminHub</title>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
 </head>
-<body>
-
-<!-- SIDEBAR -->
-<section id="sidebar">
-  <a href="#" class="brand">
-    <i class='bx bxs-smile bx-lg'></i>
-    <span class="text">AdminHub</span>
-  </a>
-  <ul class="side-menu top">
-    <li class="active">
-      <a href="#">
-        <i class='bx bxs-dashboard bx-sm'></i>
-        <span class="text">Dashboard</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <i class='bx bxs-group bx-sm'></i>
-        <span class="text">Usuarios</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <i class='bx bxs-battery-charging bx-sm'></i>
-        <span class="text">Cargadores</span>
-      </a>
-    </li>
-  </ul>
-  <ul class="side-menu bottom">
-    <li>
-      <a href="#" onclick="cerrarSesion()" class="logout">
-        <i class='bx bx-power-off bx-sm bx-burst-hover'></i>
-        <span class="text">Cerrar Sesión</span>
-      </a>
-    </li>
-  </ul>
-</section>
-<!-- SIDEBAR -->
-
-<!-- CONTENT -->
-<section id="content">
-  <nav>
-    <i class='bx bx-menu bx-sm'></i>
-    <a href="#" class="nav-link">Dashboard</a>
-  </nav>
-
-  <main>
-    <div class="head-title">
-      <div class="left">
-        <h1>Dashboard</h1>
-      </div>
-    </div>
-
-    <ul class="box-info">
-      <li>
-        <i class='bx bxs-calendar-check'></i>
-        <span class="text">
-                        <h3>1020</h3>
-                        <p>Nuevas Reservas</p>
-                    </span>
+<body class="bg-gray-100">
+<div class="flex">
+  <!-- Sidebar -->
+  <div class="w-64 bg-blue-900 h-screen p-4">
+    <div class="text-white text-lg font-bold mb-6">Dashboard</div>
+    <ul>
+      <li class="mb-4">
+        <a class="flex items-center text-white" href="#">
+          <i class="fas fa-tachometer-alt mr-3"></i>
+          Dashboard
+        </a>
       </li>
-      <li>
-        <i class='bx bxs-group'></i>
-        <span class="text">
-                        <h3>2834</h3>
-                        <p>Usuarios Registrados</p>
-                    </span>
+      <li class="mb-4">
+        <a class="flex items-center text-gray-400" href="#">
+          <i class="fas fa-th-large mr-3"></i>
+          Applications
+        </a>
       </li>
-      <li>
-        <i class='bx bxs-battery-charging'></i>
-        <span class="text">
-                        <h3>25</h3>
-                        <p>Cargadores Activos</p>
-                    </span>
+      <li class="mb-4">
+        <a class="flex items-center text-gray-400" href="#">
+          <i class="fas fa-puzzle-piece mr-3"></i>
+          UI Elements
+        </a>
+      </li>
+      <li class="mb-4">
+        <a class="flex items-center text-gray-400" href="#">
+          <i class="fas fa-edit mr-3"></i>
+          Forms
+        </a>
+      </li>
+      <li class="mb-4">
+        <a class="flex items-center text-gray-400" href="#">
+          <i class="fas fa-table mr-3"></i>
+          Tables
+        </a>
+      </li>
+      <li class="mb-4">
+        <a class="flex items-center text-gray-400" href="#">
+          <i class="fas fa-envelope mr-3"></i>
+          Email Templates
+        </a>
       </li>
     </ul>
-
-    <div class="table-data">
-      <div class="order">
-        <div class="head">
-          <h3>Últimas Reservas</h3>
-        </div>
-        <table>
-          <thead>
-          <tr>
-            <th>Usuario</th>
-            <th>Fecha</th>
-            <th>Estado</th>
-          </tr>
-          </thead>
-          <tbody id="tabla-reservas">
-          <!-- Reservas cargadas dinámicamente -->
-          </tbody>
-        </table>
+  </div>
+  <!-- Main Content -->
+  <div class="flex-1 p-6">
+    <!-- Top Bar -->
+    <div class="flex justify-between items-center mb-6">
+      <div class="flex items-center">
+        <i class="fas fa-bars text-gray-600 mr-4"></i>
+        <input class="p-2 border border-gray-300 rounded-lg" placeholder="Search here" type="text"/>
+      </div>
+      <div class="flex items-center">
+        <i class="fas fa-bell text-gray-600 mr-4"></i>
+        <i class="fas fa-user-circle text-gray-600"></i>
       </div>
     </div>
-  </main>
-</section>
-
-<script src="script.js"></script>
+    <!-- Dashboard Content -->
+    <h1 class="text-2xl font-bold mb-6">Dashboard</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-6">
+      <div class="bg-purple-200 p-4 rounded-lg">
+        <h2 class="font-bold">Sales Overview</h2>
+      </div>
+      <div class="bg-yellow-100 p-4 rounded-lg">
+        <h2 class="font-bold">Sales Overview</h2>
+      </div>
+      <div class="bg-green-100 p-4 rounded-lg">
+        <h2 class="font-bold">Sales Overview</h2>
+      </div>
+      <div class="bg-blue-100 p-4 rounded-lg">
+        <h2 class="font-bold">Sales Overview</h2>
+      </div>
+      <div class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-4 rounded-lg">
+        <h2 class="font-bold text-white">Sales Overview</h2>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h2 class="font-bold mb-4">Sales Overview</h2>
+        <img alt="Pie chart showing sales overview" height="200" src="https://placehold.co/300x200" width="300"/>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h2 class="font-bold mb-4">Top Selling Categories</h2>
+        <img alt="Pie chart showing top selling categories" height="200" src="https://placehold.co/300x200" width="300"/>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h2 class="font-bold mb-4">Top Selling Categories</h2>
+        <ul>
+          <li class="flex justify-between items-center mb-2">
+            <span>Clothing</span>
+            <span>31,245</span>
+            <span>25% Gross</span>
+            <span class="text-green-500">0.45% <i class="fas fa-arrow-up"></i></span>
+          </li>
+          <li class="flex justify-between items-center mb-2">
+            <span>Clothing</span>
+            <span>31,245</span>
+            <span>25% Gross</span>
+            <span class="text-red-500">0.45% <i class="fas fa-arrow-down"></i></span>
+          </li>
+          <li class="flex justify-between items-center mb-2">
+            <span>Clothing</span>
+            <span>31,245</span>
+            <span>25% Gross</span>
+            <span class="text-green-500">0.45% <i class="fas fa-arrow-up"></i></span>
+          </li>
+          <li class="flex justify-between items-center mb-2">
+            <span>Clothing</span>
+            <span>31,245</span>
+            <span>25% Gross</span>
+            <span class="text-red-500">0.45% <i class="fas fa-arrow-down"></i></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
