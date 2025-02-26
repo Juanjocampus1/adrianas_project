@@ -1,13 +1,155 @@
-<!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Técnico</title>
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
 </head>
-<body>
-<h1>Panel Técnico</h1>
-<button onclick="cerrarSesion()">Cerrar Sesión</button>
-<script src="script.js"></script>
+<body class="bg-gray-900 text-gray-300">
+<div class="flex">
+  <!-- Sidebar -->
+  <div class="w-64 bg-gray-800 h-screen p-4">
+    <div class="text-white mb-8">
+      <h2 class="text-xl font-bold">Jone Doe</h2>
+      <p class="text-sm">Lorem ipsum dolor sit amet consectetur.</p>
+    </div>
+    <input class="w-full p-2 mb-4 bg-gray-700 text-gray-300 rounded" placeholder="Search here" type="text"/>
+    <nav>
+      <ul>
+        <li class="mb-2">
+          <a class="flex items-center p-2 hover:bg-gray-700 rounded" href="#">
+            <i class="fas fa-tachometer-alt mr-2"></i>
+            Dashboard
+          </a>
+        </li>
+        <li class="mb-2">
+          <a class="flex items-center p-2 hover:bg-gray-700 rounded" href="#">
+            <i class="fas fa-folder mr-2"></i>
+            File manager
+          </a>
+        </li>
+        <li class="mb-2">
+          <a class="flex items-center p-2 hover:bg-gray-700 rounded" href="#">
+            <i class="fas fa-calendar-alt mr-2"></i>
+            Calendar
+          </a>
+        </li>
+        <li class="mb-2">
+          <a class="flex items-center p-2 hover:bg-gray-700 rounded" href="#">
+            <i class="fas fa-envelope mr-2"></i>
+            Mailbox
+          </a>
+        </li>
+        <li class="mb-2">
+          <a class="flex items-center p-2 hover:bg-gray-700 rounded" href="#">
+            <i class="fas fa-shopping-cart mr-2"></i>
+            Ecommerce
+          </a>
+        </li>
+        <li class="mb-2">
+          <a class="flex items-center p-2 hover:bg-gray-700 rounded" href="#">
+            <i class="fas fa-project-diagram mr-2"></i>
+            Projects
+          </a>
+        </li>
+        <li class="mb-2">
+          <a class="flex items-center p-2 hover:bg-gray-700 rounded" href="#">
+            <i class="fas fa-cogs mr-2"></i>
+            Settings
+          </a>
+        </li>
+        <li class="mb-2">
+          <a class="flex items-center p-2 hover:bg-gray-700 rounded" href="#">
+            <i class="fas fa-cube mr-2"></i>
+            Components
+          </a>
+        </li>
+        <li class="mb-2">
+          <a class="flex items-center p-2 hover:bg-gray-700 rounded" href="#">
+            <i class="fas fa-chart-bar mr-2"></i>
+            Charts
+          </a>
+        </li>
+        <li class="mb-2">
+          <a class="flex items-center p-2 hover:bg-gray-700 rounded" href="#">
+            <i class="fas fa-map mr-2"></i>
+            Maps
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <!-- Main Content -->
+  <div class="flex-1 p-6">
+    <header class="flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-bold text-white">TECNICO</h1>
+      <div class="flex items-center space-x-4">
+        <span class="text-gray-400">Settings</span>
+        <i class="fas fa-bell text-gray-400 relative">
+          <span class="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full px-1">23</span>
+        </i>
+        <i class="fas fa-envelope text-gray-400 relative">
+          <span class="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full px-1">98</span>
+        </i>
+        <i class="fas fa-bars text-gray-400"></i>
+      </div>
+    </header>
+    <div class="bg-gray-800 p-6 rounded-lg mb-6">
+      <h2 class="text-xl font-bold text-white mb-2">TECNICOOOOOS</h2>
+      <p class="text-gray-400">Hello Jone Doe, welcome to your awesome dashboard!</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-gray-800 p-6 rounded-lg flex items-center">
+        <i class="fas fa-envelope text-blue-500 text-3xl mr-4"></i>
+        <div>
+          <h3 class="text-2xl font-bold text-white">1,245</h3>
+          <p class="text-gray-400">Emails</p>
+          <p class="text-gray-500 text-sm">Lorem ipsum dolor sit amet</p>
+        </div>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-lg flex items-center">
+        <i class="fas fa-folder text-red-500 text-3xl mr-4"></i>
+        <div>
+          <h3 class="text-2xl font-bold text-white">34</h3>
+          <p class="text-gray-400">Projects</p>
+          <p class="text-gray-500 text-sm">Lorem ipsum dolor sit amet</p>
+        </div>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-lg flex items-center">
+        <i class="fas fa-users text-green-500 text-3xl mr-4"></i>
+        <div>
+          <h3 class="text-2xl font-bold text-white">5,245</h3>
+          <p class="text-gray-400">Users</p>
+          <p class="text-gray-500 text-sm">Lorem ipsum dolor sit amet</p>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h3 class="text-xl font-bold text-white mb-4">Actualizar el estado de los cargadores</h3>
+        <img alt="Bar chart showing data over months" class="w-full h-48" height="300" src="https://storage.googleapis.com/a1aa/image/vlvXLRrhmudjkn-8TKRx6v3jq0rXFAuad4aNJDF1x7o.jpg" width="600"/>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h3 class="text-xl font-bold text-white mb-4">Ver detalles tecnicos de los cargadores</h3>
+        <img alt="Line chart showing data over months" class="w-full h-48" height="300" src="https://storage.googleapis.com/a1aa/image/GW5ebikwdz8-RijoupOdfVxXjoDQ-fsgzyd2uxcvgl8.jpg" width="600"/>
+      </div>
+    </div>
+    <div class="bg-gray-800 p-6 rounded-lg mb-6">
+      <div class="flex items-center mb-4">
+        <img alt="User avatar" class="rounded-full mr-4" height="40" src="https://storage.googleapis.com/a1aa/image/ntg4w8ryJzlHaT9s5cQHeSIkiM5STR62UOTtgHFtXhg.jpg" width="40"/>
+        <div>
+          <h3 class="text-lg font-bold text-white">Reportar problemas o incidencias</h3>
+          <p class="text-gray-500">Lorem ipsum dolor sit amet consectetur elit.</p>
+        </div>
+      </div>
+      <div class="flex items-center">
+        <img alt="User avatar" class="rounded-full mr-4" height="40" src="https://www.flaticon.es/icono-gratis/tech-support_8943387?term=support&page=1&position=1&origin=search&related_id=8943387" width="40"/>
+        <div>
+          <h3 class="text-lg font-bold text-white">Vitaliy Perez & Adriana Reyes</h3>
+          <p class="text-gray-500">Lorem ipsum dolor sit amet consectetur elit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
