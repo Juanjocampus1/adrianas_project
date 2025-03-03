@@ -1,5 +1,8 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
@@ -11,115 +14,56 @@
     <div class="text-white text-lg font-bold mb-6">ADMINISTRACION</div>
     <ul>
       <li class="mb-4">
-        <a class="flex items-center text-white" href="#">
+        <a class="flex items-center text-white cursor-pointer" onclick="showSection('gestion')">
           <i class="fas fa-tachometer-alt mr-3"></i>
           🗺️ Gestion de Cargadores
         </a>
       </li>
       <li class="mb-4">
-        <a class="flex items-center text-gray-400" href="#">
+        <a class="flex items-center text-gray-400 cursor-pointer" onclick="showSection('estadisticas')">
           <i class="fas fa-th-large mr-3"></i>
-          📊 Estadisticas
-        </a>
-      </li>
-      <li class="mb-4">
-        <a class="flex items-center text-gray-400" href="#">
-          <i class="fas fa-puzzle-piece mr-3"></i>
-          📜 Logs de Auditora
-        </a>
-      </li>
-      <li class="mb-4">
-        <a class="flex items-center text-gray-400" href="#">
-          <i class="fas fa-edit mr-3"></i>
-          📄 Historial de Reservas
-        </a>
-      </li>
-      <li class="mb-4">
-        <a class="flex items-center text-gray-400" href="#">
-          <i class="fas fa-table mr-3"></i>
-          👥 Gestion de Usuarios
-        </a>
-      </li>
-      <li class="mb-4">
-        <a class="flex items-center text-gray-400" href="#">
-          <i class="fas fa-envelope mr-3"></i>
-          ⚙️ Configuracion General
+          📊 Estadísticas
         </a>
       </li>
     </ul>
   </div>
+
   <!-- Main Content -->
   <div class="flex-1 p-6">
-    <!-- Top Bar -->
-    <div class="flex justify-between items-center mb-6">
-      <div class="flex items-center">
-        <i class="fas fa-bars text-gray-600 mr-4"></i>
-        <input class="p-2 border border-gray-300 rounded-lg" placeholder="Search here" type="text"/>
-      </div>
-      <div class="flex items-center">
-        <i class="fas fa-bell text-gray-600 mr-4"></i>
-        <i class="fas fa-user-circle text-gray-600"></i>
-      </div>
-    </div>
-    <!-- Dashboard Content -->
-    <h1 class="text-2xl font-bold mb-6">Gestion de cargadores</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-6">
-      <div class="bg-purple-200 p-4 rounded-lg">
-        <h2 class="font-bold">Carga rapida</h2>
-      </div>
-      <div class="bg-yellow-100 p-4 rounded-lg">
-        <h2 class="font-bold">Carga estandar</h2>
-      </div>
-      <div class="bg-green-100 p-4 rounded-lg">
-        <h2 class="font-bold">Carga compatible</h2>
-      </div>
-      <div class="bg-blue-100 p-4 rounded-lg">
-        <h2 class="font-bold">Carga Tesla</h2>
-      </div>
-      <div class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-4 rounded-lg">
-        <h2 class="font-bold text-white">Sales Overview</h2>
+    <!-- Sección de Gestión de Cargadores -->
+    <div id="gestion" class="section">
+      <h1 class="text-2xl font-bold mb-6">Gestión de Cargadores</h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-6">
+        <div class="bg-purple-200 p-4 rounded-lg"><h2 class="font-bold">Carga Rápida</h2></div>
+        <div class="bg-yellow-100 p-4 rounded-lg"><h2 class="font-bold">Carga Estándar</h2></div>
+        <div class="bg-green-100 p-4 rounded-lg"><h2 class="font-bold">Carga Compatible</h2></div>
+        <div class="bg-blue-100 p-4 rounded-lg"><h2 class="font-bold">Carga Tesla</h2></div>
       </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+    <!-- Sección de Estadísticas (Oculta por defecto) -->
+    <div id="estadisticas" class="section hidden">
+      <h1 class="text-2xl font-bold mb-6">Estadísticas</h1>
       <div class="bg-white p-4 rounded-lg shadow">
-        <h2 class="font-bold mb-4">Sales Overview</h2>
-        <img alt="Pie chart showing sales overview" height="200" src="https://placehold.co/300x200" width="300"/>
-      </div>
-      <div class="bg-white p-4 rounded-lg shadow">
-        <h2 class="font-bold mb-4">Top Selling Categories</h2>
-        <img alt="Pie chart showing top selling categories" height="200" src="https://placehold.co/300x200" width="300"/>
-      </div>
-      <div class="bg-white p-4 rounded-lg shadow">
-        <h2 class="font-bold mb-4">Top Selling Categories</h2>
+        <h2 class="font-bold mb-4">Resumen de Estadísticas</h2>
         <ul>
-          <li class="flex justify-between items-center mb-2">
-            <span>Clothing</span>
-            <span>31,245</span>
-            <span>25% Gross</span>
-            <span class="text-green-500">0.45% <i class="fas fa-arrow-up"></i></span>
-          </li>
-          <li class="flex justify-between items-center mb-2">
-            <span>Clothing</span>
-            <span>31,245</span>
-            <span>25% Gross</span>
-            <span class="text-red-500">0.45% <i class="fas fa-arrow-down"></i></span>
-          </li>
-          <li class="flex justify-between items-center mb-2">
-            <span>Clothing</span>
-            <span>31,245</span>
-            <span>25% Gross</span>
-            <span class="text-green-500">0.45% <i class="fas fa-arrow-up"></i></span>
-          </li>
-          <li class="flex justify-between items-center mb-2">
-            <span>Clothing</span>
-            <span>31,245</span>
-            <span>25% Gross</span>
-            <span class="text-red-500">0.45% <i class="fas fa-arrow-down"></i></span>
-          </li>
+          <li class="flex justify-between items-center mb-2"><span>Total de Cargas</span><span>1,245</span></li>
+          <li class="flex justify-between items-center mb-2"><span>Cargas Exitosas</span><span>1,200</span></li>
+          <li class="flex justify-between items-center mb-2"><span>Cargas Fallidas</span><span>45</span></li>
+          <li class="flex justify-between items-center mb-2"><span>Usuarios Registrados</span><span>500</span></li>
         </ul>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(section => {
+      section.classList.add('hidden');
+    });
+    document.getElementById(sectionId).classList.remove('hidden');
+  }
+</script>
 </body>
 </html>
