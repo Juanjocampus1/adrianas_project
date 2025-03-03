@@ -25,6 +25,12 @@
           📊 Estadísticas
         </a>
       </li>
+      <li class="mb-4">
+        <a class="flex items-center text-gray-400 cursor-pointer" onclick="showSection('logs')">
+          <i class="fas fa-puzzle-piece mr-3"></i>
+          📜 Logs de Auditoría
+        </a>
+      </li>
     </ul>
   </div>
 
@@ -51,6 +57,20 @@
           <li class="flex justify-between items-center mb-2"><span>Cargas Exitosas</span><span>1,200</span></li>
           <li class="flex justify-between items-center mb-2"><span>Cargas Fallidas</span><span>45</span></li>
           <li class="flex justify-between items-center mb-2"><span>Usuarios Registrados</span><span>500</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sección de Logs de Auditoría (Oculta por defecto) -->
+    <div id="logs" class="section hidden">
+      <h1 class="text-2xl font-bold mb-6">Logs de Auditoría</h1>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h2 class="font-bold mb-4">Últimos Registros</h2>
+        <ul>
+          <li class="mb-2">[2025-03-01 14:32] Usuario admin inició sesión</li>
+          <li class="mb-2">[2025-03-01 14:35] Se modificó la configuración del sistema</li>
+          <li class="mb-2">[2025-03-01 15:00] Usuario soporte realizó una auditoría</li>
+          <li class="mb-2">[2025-03-01 15:10] Se generó un informe de actividad</li>
         </ul>
       </div>
     </div>
