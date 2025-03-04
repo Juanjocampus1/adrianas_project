@@ -16,7 +16,7 @@
       <li class="mb-4">
         <a class="flex items-center text-white cursor-pointer" onclick="showSection('gestion')">
           <i class="fas fa-tachometer-alt mr-3"></i>
-          🗺️ Gestion de Cargadores
+          🗺️ Gestión de Cargadores
         </a>
       </li>
       <li class="mb-4">
@@ -31,12 +31,29 @@
           📜 Logs de Auditoría
         </a>
       </li>
+      <li class="mb-4">
+        <a class="flex items-center text-gray-400 cursor-pointer" onclick="showSection('reservas')">
+          <i class="fas fa-edit mr-3"></i>
+          📄 Historial de Reservas
+        </a>
+      </li>
+      <li class="mb-4">
+        <a class="flex items-center text-gray-400 cursor-pointer" onclick="showSection('usuarios')">
+          <i class="fas fa-table mr-3"></i>
+          👥 Gestión de Usuarios
+        </a>
+      </li>
+      <li class="mb-4">
+        <a class="flex items-center text-gray-400 cursor-pointer" onclick="showSection('configuracion')">
+          <i class="fas fa-cog mr-3"></i>
+          ⚙️ Configuración General
+        </a>
+      </li>
     </ul>
   </div>
 
   <!-- Main Content -->
   <div class="flex-1 p-6">
-    <!-- Sección de Gestión de Cargadores -->
     <div id="gestion" class="section">
       <h1 class="text-2xl font-bold mb-6">Gestión de Cargadores</h1>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-6">
@@ -47,7 +64,6 @@
       </div>
     </div>
 
-    <!-- Sección de Estadísticas (Oculta por defecto) -->
     <div id="estadisticas" class="section hidden">
       <h1 class="text-2xl font-bold mb-6">Estadísticas</h1>
       <div class="bg-white p-4 rounded-lg shadow">
@@ -61,7 +77,6 @@
       </div>
     </div>
 
-    <!-- Sección de Logs de Auditoría (Oculta por defecto) -->
     <div id="logs" class="section hidden">
       <h1 class="text-2xl font-bold mb-6">Logs de Auditoría</h1>
       <div class="bg-white p-4 rounded-lg shadow">
@@ -72,6 +87,36 @@
           <li class="mb-2">[2025-03-01 15:00] Usuario soporte realizó una auditoría</li>
           <li class="mb-2">[2025-03-01 15:10] Se generó un informe de actividad</li>
         </ul>
+      </div>
+    </div>
+
+    <div id="reservas" class="section hidden">
+      <h1 class="text-2xl font-bold mb-6">Historial de Reservas</h1>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h2 class="font-bold mb-4">Reservas Recientes</h2>
+        <ul>
+          <li class="mb-2">[2025-03-02 10:15] Reserva de usuario Juan Pérez</li>
+          <li class="mb-2">[2025-03-02 11:30] Reserva de usuario Ana López</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="usuarios" class="section hidden">
+      <h1 class="text-2xl font-bold mb-6">Gestión de Usuarios</h1>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h2 class="font-bold mb-4">Lista de Usuarios</h2>
+        <ul>
+          <li class="mb-2">Admin - admin@example.com</li>
+          <li class="mb-2">Usuario1 - user1@example.com</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="configuracion" class="section hidden">
+      <h1 class="text-2xl font-bold mb-6">Configuración General</h1>
+      <div class="bg-white p-4 rounded-lg shadow">
+        <h2 class="font-bold mb-4">Opciones del Sistema</h2>
+        <p>Ajustes de configuración y preferencias del sistema.</p>
       </div>
     </div>
   </div>
