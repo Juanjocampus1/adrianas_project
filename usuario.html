@@ -32,7 +32,8 @@
     <span class="absolute top-2 right-4 text-xl cursor-pointer" onclick="cerrarFormularioReserva()">&times;</span>
     <h2 class="text-2xl font-bold mb-2">Formulario de Reserva</h2>
     <label class="block mb-2">Nombre: <input type="text" id="nombre" class="border p-2 rounded w-full"></label>
-    <label class="block mb-2">Email: <input type="email" id="email" class="border p-2 rounded w-full"></label>
+    <label class="block mb-2">Email: <input type="email" id="email" class="border p-2 rounded w-full" placeholder="Ingrese su correo" oninput="validarEmail()"></label>
+    <p id="emailError" class="text-red-600 hidden">Por favor, introduzca un correo válido con '@'</p>
     <button onclick="confirmarReserva()" class="bg-blue-600 text-white px-4 py-2 rounded mt-4">Confirmar Reserva</button>
   </div>
 </div>
@@ -44,19 +45,22 @@
   }).addTo(map);
 
   var estadosCargadores = {
-    "Disponible": "green",
-    "En Uso": "red",
-    "Fuera de Servicio": "gray"
+    "libre": "green",
+    "ocupado": "red",
+    "en reparación": "gray"
   };
 
   var cargadores = [
-    { coords: [40.416775, -3.703790], info: "Cargador en Madrid - Disponible", estado: "Disponible" },
-    { coords: [40.420556, -3.707222], info: "Cargador en Plaza Mayor - En Uso", estado: "En Uso" },
-    { coords: [40.425278, -3.711389], info: "Cargador en Gran Vía - Fuera de Servicio", estado: "Fuera de Servicio" }
+    { "id": 1, "tipo": "rápido", "ubicacion": [40.4168, -3.7038], "estado": "libre", "nivel_bateria": 80, "tiempo_estimado": 30 },
+    { "id": 2, "tipo": "estándar", "ubicacion": [40.4128, -3.7100], "estado": "ocupado", "nivel_bateria": 50, "tiempo_estimado": 60 },
+    { "id": 3, "tipo": "compatible", "ubicacion": [40.4200, -3.7050], "estado": "en reparación", "nivel_bateria": 20, "tiempo_estimado": 90 },
+    { "id": 4, "tipo": "rápido", "ubicacion": [40.4150, -3.7000], "estado": "libre", "nivel_bateria": 100, "tiempo_estimado": 30 },
+    { "id": 5, "tipo": "estándar", "ubicacion": [40.4100, -3.7100], "estado": "ocupado", "nivel_bateria": 70, "tiempo_estimado": 60 },
+    { "id": 6, "tipo": "compatible", "ubicacion": [40.4200, -3.7000], "estado": "en reparación", "nivel_bateria": 40, "tiempo_estimado": 90 }
   ];
 
   cargadores.forEach(cargador => {
-    var marker = L.circleMarker(cargador.coords, {
+    var marker = L.circleMarker(cargador.ubicacion, {
       color: estadosCargadores[cargador.estado],
       fillColor: estadosCargadores[cargador.estado],
       fillOpacity: 0.8,
@@ -64,7 +68,7 @@
     }).addTo(map);
 
     marker.on('click', function() {
-      document.getElementById('infoCargador').innerText = cargador.info;
+      document.getElementById('infoCargador').innerText = `Cargador ${cargador.id} - Tipo: ${cargador.tipo}\nEstado: ${cargador.estado}\nNivel de batería: ${cargador.nivel_bateria}%\nTiempo estimado: ${cargador.tiempo_estimado} min`;
       document.getElementById('modal').classList.remove('hidden');
     });
   });
@@ -82,9 +86,23 @@
     document.getElementById('modalReserva').classList.add('hidden');
   }
 
+  function validarEmail() {
+    let email = document.getElementById('email').value;
+    let emailError = document.getElementById('emailError');
+    if (!email.includes('@')) {
+      emailError.classList.remove('hidden');
+    } else {
+      emailError.classList.add('hidden');
+    }
+  }
+
   function confirmarReserva() {
     let nombre = document.getElementById('nombre').value;
     let email = document.getElementById('email').value;
+    if (!email.includes('@')) {
+      alert("Por favor, introduzca un correo válido con '@'");
+      return;
+    }
     if (nombre && email) {
       alert("Reserva realizada con éxito");
       cerrarFormularioReserva();
