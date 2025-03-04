@@ -6,26 +6,72 @@
   <title>Mapa de Cargadores</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-900 text-gray-300 flex flex-col items-center p-6">
 
-<h1 class="titulo">Mapa de Cargadores</h1>
-<div id="map" style="height: 400px; width: 80%; margin: auto; border-radius: 10px;"></div>
+<h1 class="text-3xl font-bold mb-4 text-center">Mapa de Cargadores</h1>
 
-<button onclick="cerrarSesion()">Cerrar Sesión</button>
+<div id="map" class="w-3/4 h-96 rounded-lg shadow-lg"></div>
+
+<button onclick="cerrarSesion()" class="mt-4 bg-red-600 text-white px-4 py-2 rounded">Cerrar Sesión</button>
 
 <!-- Modal de Información -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="cerrarModal()">&times;</span>
-    <h2>Detalles del Cargador</h2>
-    <p id="infoCargador"></p>
-    <button id="reservarBtn" class="button green" style="display: none;">Reservar</button>
+<div id="modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center">
+  <div class="bg-white p-6 rounded-lg shadow-lg text-gray-900">
+    <span class="absolute top-2 right-4 text-xl cursor-pointer" onclick="cerrarModal()">&times;</span>
+    <h2 class="text-2xl font-bold mb-2">Detalles del Cargador</h2>
+    <p id="infoCargador" class="mb-4"></p>
+    <button id="reservarBtn" class="bg-green-600 text-white px-4 py-2 rounded" onclick="mostrarFormularioReserva()">Reservar</button>
   </div>
 </div>
 
-<script src="script.js"></script>
+<!-- Modal de Reserva -->
+<div id="modalReserva" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center">
+  <div class="bg-white p-6 rounded-lg shadow-lg text-gray-900">
+    <span class="absolute top-2 right-4 text-xl cursor-pointer" onclick="cerrarFormularioReserva()">&times;</span>
+    <h2 class="text-2xl font-bold mb-2">Formulario de Reserva</h2>
+    <label class="block mb-2">Nombre: <input type="text" id="nombre" class="border p-2 rounded w-full"></label>
+    <label class="block mb-2">Email: <input type="email" id="email" class="border p-2 rounded w-full"></label>
+    <button onclick="confirmarReserva()" class="bg-blue-600 text-white px-4 py-2 rounded mt-4">Confirmar Reserva</button>
+  </div>
+</div>
+
+<script>
+  var map = L.map('map').setView([40.416775, -3.703790], 12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+
+  var cargador = L.marker([40.416775, -3.703790]).addTo(map);
+  cargador.on('click', function() {
+    document.getElementById('infoCargador').innerText = "Cargador en Madrid - Disponible";
+    document.getElementById('modal').classList.remove('hidden');
+  });
+
+  function cerrarModal() {
+    document.getElementById('modal').classList.add('hidden');
+  }
+
+  function mostrarFormularioReserva() {
+    document.getElementById('modal').classList.add('hidden');
+    document.getElementById('modalReserva').classList.remove('hidden');
+  }
+
+  function cerrarFormularioReserva() {
+    document.getElementById('modalReserva').classList.add('hidden');
+  }
+
+  function confirmarReserva() {
+    let nombre = document.getElementById('nombre').value;
+    let email = document.getElementById('email').value;
+    if (nombre && email) {
+      alert("Reserva realizada con éxito");
+      cerrarFormularioReserva();
+    } else {
+      alert("Por favor, complete todos los campos");
+    }
+  }
+</script>
 </body>
 </html>
-
