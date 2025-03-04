@@ -43,10 +43,18 @@
     attribution: '© OpenStreetMap'
   }).addTo(map);
 
-  var cargador = L.marker([40.416775, -3.703790]).addTo(map);
-  cargador.on('click', function() {
-    document.getElementById('infoCargador').innerText = "Cargador en Madrid - Disponible";
-    document.getElementById('modal').classList.remove('hidden');
+  var cargadores = [
+    { coords: [40.416775, -3.703790], info: "Cargador en Madrid - Disponible" },
+    { coords: [40.420556, -3.707222], info: "Cargador en Plaza Mayor - En Uso" },
+    { coords: [40.425278, -3.711389], info: "Cargador en Gran Vía - Disponible" }
+  ];
+
+  cargadores.forEach(cargador => {
+    var marker = L.marker(cargador.coords).addTo(map);
+    marker.on('click', function() {
+      document.getElementById('infoCargador').innerText = cargador.info;
+      document.getElementById('modal').classList.remove('hidden');
+    });
   });
 
   function cerrarModal() {
