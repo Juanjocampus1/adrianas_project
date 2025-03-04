@@ -8,17 +8,17 @@
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-900 text-gray-300 flex flex-col items-center p-6">
+<body class="bg-gray-900 text-gray-300 flex flex-col items-center p-6 relative">
 
 <h1 class="text-3xl font-bold mb-4 text-center">Mapa de Cargadores</h1>
 
-<div id="map" class="w-3/4 h-96 rounded-lg shadow-lg"></div>
+<div id="map" class="w-3/4 h-96 rounded-lg shadow-lg relative"></div>
 
 <button onclick="cerrarSesion()" class="mt-4 bg-red-600 text-white px-4 py-2 rounded">Cerrar Sesión</button>
 
 <!-- Modal de Información -->
-<div id="modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center">
-  <div class="bg-white p-6 rounded-lg shadow-lg text-gray-900">
+<div id="modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg text-gray-900 relative">
     <span class="absolute top-2 right-4 text-xl cursor-pointer" onclick="cerrarModal()">&times;</span>
     <h2 class="text-2xl font-bold mb-2">Detalles del Cargador</h2>
     <p id="infoCargador" class="mb-4"></p>
@@ -27,8 +27,8 @@
 </div>
 
 <!-- Modal de Reserva -->
-<div id="modalReserva" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center">
-  <div class="bg-white p-6 rounded-lg shadow-lg text-gray-900">
+<div id="modalReserva" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg text-gray-900 relative">
     <span class="absolute top-2 right-4 text-xl cursor-pointer" onclick="cerrarFormularioReserva()">&times;</span>
     <h2 class="text-2xl font-bold mb-2">Formulario de Reserva</h2>
     <label class="block mb-2">Nombre: <input type="text" id="nombre" class="border p-2 rounded w-full"></label>
@@ -43,14 +43,26 @@
     attribution: '© OpenStreetMap'
   }).addTo(map);
 
+  var estadosCargadores = {
+    "Disponible": "green",
+    "En Uso": "red",
+    "Fuera de Servicio": "gray"
+  };
+
   var cargadores = [
-    { coords: [40.416775, -3.703790], info: "Cargador en Madrid - Disponible" },
-    { coords: [40.420556, -3.707222], info: "Cargador en Plaza Mayor - En Uso" },
-    { coords: [40.425278, -3.711389], info: "Cargador en Gran Vía - Disponible" }
+    { coords: [40.416775, -3.703790], info: "Cargador en Madrid - Disponible", estado: "Disponible" },
+    { coords: [40.420556, -3.707222], info: "Cargador en Plaza Mayor - En Uso", estado: "En Uso" },
+    { coords: [40.425278, -3.711389], info: "Cargador en Gran Vía - Fuera de Servicio", estado: "Fuera de Servicio" }
   ];
 
   cargadores.forEach(cargador => {
-    var marker = L.marker(cargador.coords).addTo(map);
+    var marker = L.circleMarker(cargador.coords, {
+      color: estadosCargadores[cargador.estado],
+      fillColor: estadosCargadores[cargador.estado],
+      fillOpacity: 0.8,
+      radius: 10
+    }).addTo(map);
+
     marker.on('click', function() {
       document.getElementById('infoCargador').innerText = cargador.info;
       document.getElementById('modal').classList.remove('hidden');
