@@ -12,13 +12,13 @@
 
 <h1 class="text-3xl font-bold mb-4 text-center">Mapa de Cargadores</h1>
 
-<div id="map" class="w-3/4 h-96 rounded-lg shadow-lg relative"></div>
+<div id="map" class="w-3/4 h-96 rounded-lg shadow-lg relative z-10"></div>
 
 <button onclick="cerrarSesion()" class="mt-4 bg-red-600 text-white px-4 py-2 rounded">Cerrar Sesión</button>
 
 <!-- Modal de Información -->
 <div id="modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
-  <div class="bg-white p-6 rounded-lg shadow-lg text-gray-900 relative">
+  <div class="bg-white p-6 rounded-lg shadow-lg text-gray-900 relative w-1/3">
     <span class="absolute top-2 right-4 text-xl cursor-pointer" onclick="cerrarModal()">&times;</span>
     <h2 class="text-2xl font-bold mb-2">Detalles del Cargador</h2>
     <p id="infoCargador" class="mb-4"></p>
@@ -28,7 +28,7 @@
 
 <!-- Modal de Reserva -->
 <div id="modalReserva" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
-  <div class="bg-white p-6 rounded-lg shadow-lg text-gray-900 relative">
+  <div class="bg-white p-6 rounded-lg shadow-lg text-gray-900 relative w-1/3">
     <span class="absolute top-2 right-4 text-xl cursor-pointer" onclick="cerrarFormularioReserva()">&times;</span>
     <h2 class="text-2xl font-bold mb-2">Formulario de Reserva</h2>
     <label class="block mb-2">Nombre: <input type="text" id="nombre" class="border p-2 rounded w-full"></label>
