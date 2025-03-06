@@ -1,19 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
     let rol = localStorage.getItem("rol");
 
-    // Si ya inició sesión, redirigir automáticamente
+    // Si el usuario ya inició sesión, lo redirige a su respectiva página
     if (rol && window.location.pathname === "/index.html") {
         redirigirSegunRol(rol);
     }
 
-    // Bloquear acceso a usuario.html, admin.html y tecnico.html si no hay sesión activa
+    // Bloquear acceso a páginas sin sesión activa
     if (!rol && (window.location.pathname.includes("usuario.html") ||
         window.location.pathname.includes("admin.html") ||
         window.location.pathname.includes("tecnico.html"))) {
-        window.location.href = "index.html";
+        window.location.href = "login.html"; // 🔹 Redirigir al login si no hay sesión
     }
 });
 
+// Manejo del formulario de login
 document.getElementById("loginForm")?.addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -35,6 +36,7 @@ document.getElementById("loginForm")?.addEventListener("submit", function(event)
     }
 });
 
+// Función para redirigir al usuario según su rol
 function redirigirSegunRol(rol) {
     let paginas = {
         "usuario": "usuario.html",
@@ -47,13 +49,19 @@ function redirigirSegunRol(rol) {
     }
 }
 
+// Cerrar sesión y redirigir al login
 function cerrarSesion() {
     localStorage.removeItem("rol");
-    window.location.href = "index.html";
+    window.location.href = "login.html"; // 🔹 Asegurar redirección correcta al login
 }
+
+// Geolocalización y carga de mapa
 document.addEventListener("DOMContentLoaded", () => {
-    if (localStorage.getItem("rol") !== "usuario" && window.location.pathname.includes("usuario.html")) {
-        window.location.href = "index.html";
+    let rol = localStorage.getItem("rol");
+
+    // Bloquear acceso a usuario.html si el rol no es usuario
+    if (rol !== "usuario" && window.location.pathname.includes("usuario.html")) {
+        window.location.href = "login.html";
     }
 
     if ("geolocation" in navigator) {
@@ -84,10 +92,13 @@ document.addEventListener("DOMContentLoaded", () => {
                             .on('click', () => abrirModal(cargador));
                     });
                 });
+        }, () => {
+            console.warn("⚠ No se pudo obtener la ubicación. Se usará la ubicación por defecto (Madrid).");
         });
     }
 });
 
+// Mostrar detalles del cargador en un modal
 function abrirModal(cargador) {
     let modal = document.getElementById("modal");
     let infoCargador = document.getElementById("infoCargador");
