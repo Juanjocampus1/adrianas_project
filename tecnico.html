@@ -13,40 +13,15 @@
   <div class="w-64 bg-gray-800 h-screen p-4">
     <div class="text-white mb-8">
       <h2 class="text-xl font-bold">Jone Doe</h2>
-      <p class="text-sm">Lorem ipsum dolor sit amet consectetur.</p>
+      <p class="text-sm">Técnico de mantenimiento</p>
     </div>
     <nav>
       <ul>
-        <li class="mb-2">
-          <a class="flex items-center p-2 hover:bg-gray-700 rounded cursor-pointer" onclick="showSection('cargadores')">
-            <i class="fas fa-tachometer-alt mr-2"></i>
-            🔧 Cargadores Asignados
-          </a>
-        </li>
-        <li class="mb-2">
-          <a class="flex items-center p-2 hover:bg-gray-700 rounded cursor-pointer" onclick="showSection('incidencias')">
-            <i class="fas fa-folder mr-2"></i>
-            📋 Reportes de Incidencias
-          </a>
-        </li>
-        <li class="mb-2">
-          <a class="flex items-center p-2 hover:bg-gray-700 rounded cursor-pointer" onclick="showSection('diagnostico')">
-            <i class="fas fa-envelope mr-2"></i>
-            Diagnóstico y Mantenimiento
-          </a>
-        </li>
-        <li class="mb-2">
-          <a class="flex items-center p-2 hover:bg-gray-700 rounded cursor-pointer" onclick="showSection('facturacion')">
-            <i class="fas fa-shopping-cart mr-2"></i>
-            Facturación y Pagos
-          </a>
-        </li>
-        <li class="mb-2">
-          <a class="flex items-center p-2 hover:bg-gray-700 rounded cursor-pointer" onclick="showSection('configuracion')">
-            <i class="fas fa-cogs mr-2"></i>
-            Configuración
-          </a>
-        </li>
+        <li class="mb-2"><a class="flex items-center p-2 hover:bg-gray-700 rounded cursor-pointer" onclick="showSection('cargadores')">🔧 Cargadores Asignados</a></li>
+        <li class="mb-2"><a class="flex items-center p-2 hover:bg-gray-700 rounded cursor-pointer" onclick="showSection('incidencias')">📋 Reportes de Incidencias</a></li>
+        <li class="mb-2"><a class="flex items-center p-2 hover:bg-gray-700 rounded cursor-pointer" onclick="showSection('diagnostico')">🔍 Diagnóstico</a></li>
+        <li class="mb-2"><a class="flex items-center p-2 hover:bg-gray-700 rounded cursor-pointer" onclick="showSection('facturacion')">💰 Facturación</a></li>
+        <li class="mb-2"><a class="flex items-center p-2 hover:bg-gray-700 rounded cursor-pointer" onclick="showSection('configuracion')">⚙ Configuración</a></li>
       </ul>
     </nav>
   </div>
@@ -54,71 +29,60 @@
   <!-- Main Content -->
   <div class="flex-1 p-6">
     <header class="flex justify-between items-center mb-6">
-      <h1 class="text-2xl font-bold text-white">TECNICO</h1>
-      <div class="flex items-center space-x-4">
-        <span class="text-gray-400">Settings</span>
-        <i class="fas fa-bell text-gray-400 relative">
-          <span class="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full px-1">23</span>
-        </i>
-        <i class="fas fa-envelope text-gray-400 relative">
-          <span class="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full px-1">98</span>
-        </i>
-      </div>
+      <h1 class="text-2xl font-bold text-white">Dashboard Técnico</h1>
     </header>
 
     <!-- Sección de Cargadores Asignados -->
     <div id="cargadores" class="section">
-      <h1 class="text-2xl font-bold mb-6">Cargadores Asignados</h1>
-      <div class="bg-gray-800 p-6 rounded-lg mb-6">
-        <h2 class="text-xl font-bold text-white mb-2">Lista de cargadores</h2>
-        <p class="text-gray-400">Visualiza el estado actual de los cargadores.</p>
-      </div>
+      <h2 class="text-xl font-bold mb-4">Cargadores Asignados</h2>
+      <ul id="listaCargadores" class="bg-gray-800 p-4 rounded-lg"></ul>
     </div>
 
     <!-- Sección de Reportes de Incidencias -->
     <div id="incidencias" class="section hidden">
-      <h1 class="text-2xl font-bold mb-6">Reportes de Incidencias</h1>
-      <div class="bg-gray-800 p-6 rounded-lg">
-        <h2 class="text-xl font-bold text-white mb-4">Historial de reportes</h2>
-        <p class="text-gray-400">Consulta y gestiona las incidencias reportadas.</p>
-      </div>
+      <h2 class="text-xl font-bold mb-4">Reportes de Incidencias</h2>
+      <ul id="listaIncidencias" class="bg-gray-800 p-4 rounded-lg"></ul>
     </div>
 
-    <!-- Sección de Diagnóstico y Mantenimiento -->
+    <!-- Sección de Diagnóstico -->
     <div id="diagnostico" class="section hidden">
-      <h1 class="text-2xl font-bold mb-6">Diagnóstico y Mantenimiento</h1>
-      <div class="bg-gray-800 p-6 rounded-lg">
-        <h2 class="text-xl font-bold text-white mb-4">Estado de mantenimiento</h2>
-        <p class="text-gray-400">Consulta el estado de los equipos.</p>
-      </div>
+      <h2 class="text-xl font-bold mb-4">Diagnóstico y Mantenimiento</h2>
+      <p id="estadoCargadores" class="bg-gray-800 p-4 rounded-lg">Cargando...</p>
     </div>
 
-    <!-- Sección de Facturación y Pagos -->
+    <!-- Sección de Facturación -->
     <div id="facturacion" class="section hidden">
-      <h1 class="text-2xl font-bold mb-6">Facturación y Pagos</h1>
-      <div class="bg-gray-800 p-6 rounded-lg">
-        <h2 class="text-xl font-bold text-white mb-4">Historial de pagos</h2>
-        <p class="text-gray-400">Consulta las facturas y métodos de pago.</p>
-      </div>
+      <h2 class="text-xl font-bold mb-4">Historial de Facturación</h2>
+      <ul id="listaFacturacion" class="bg-gray-800 p-4 rounded-lg"></ul>
     </div>
 
     <!-- Sección de Configuración -->
     <div id="configuracion" class="section hidden">
-      <h1 class="text-2xl font-bold mb-6">Configuración</h1>
-      <div class="bg-gray-800 p-6 rounded-lg">
-        <h2 class="text-xl font-bold text-white mb-4">Opciones del sistema</h2>
-        <p class="text-gray-400">Ajustes generales y personalización.</p>
-      </div>
+      <h2 class="text-xl font-bold mb-4">Configuración</h2>
+      <button onclick="cambiarIdioma()" class="bg-blue-600 text-white px-4 py-2 rounded">Cambiar Idioma</button>
     </div>
   </div>
 </div>
 
 <script>
   function showSection(sectionId) {
-    document.querySelectorAll('.section').forEach(section => {
-      section.classList.add('hidden');
-    });
+    document.querySelectorAll('.section').forEach(section => section.classList.add('hidden'));
     document.getElementById(sectionId).classList.remove('hidden');
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const cargadores = JSON.parse(localStorage.getItem("cargadoresAsignados")) || [];
+    const incidencias = JSON.parse(localStorage.getItem("incidenciasReportadas")) || [];
+    const facturacion = JSON.parse(localStorage.getItem("historialPagos")) || [];
+
+    document.getElementById("listaCargadores").innerHTML = cargadores.length ? cargadores.map(c => `<li>${c}</li>`).join('') : "No hay cargadores asignados.";
+    document.getElementById("listaIncidencias").innerHTML = incidencias.length ? incidencias.map(i => `<li>${i}</li>`).join('') : "No hay incidencias reportadas.";
+    document.getElementById("listaFacturacion").innerHTML = facturacion.length ? facturacion.map(f => `<li>${f}</li>`).join('') : "No hay pagos registrados.";
+    document.getElementById("estadoCargadores").innerText = cargadores.length ? "Estado actualizado basado en reportes de usuarios." : "Sin datos recientes.";
+  });
+
+  function cambiarIdioma() {
+    alert("Función de cambio de idioma próximamente");
   }
 </script>
 </body>
