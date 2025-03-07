@@ -32,6 +32,16 @@
     <h2 class="text-2xl font-bold mb-2">Formulario de Reserva</h2>
     <label class="block mb-2">Nombre: <input type="text" id="nombre" class="border p-2 rounded w-full"></label>
     <label class="block mb-2">Cargador: <input type="text" id="cargador" class="border p-2 rounded w-full" placeholder="Ejemplo: Cargador 1"></label>
+    <label class="block mb-2">Tipo de Cargador:
+      <select id="tipoCargador" class="border p-2 rounded w-full">
+        <option value="rapido">Rápido (0.50€/min)</option>
+        <option value="estandar">Estándar (0.30€/min)</option>
+        <option value="compatible">Compatible (0.40€/min)</option>
+      </select>
+    </label>
+    <label class="block mb-2">Tiempo Estimado (min):
+      <input type="number" id="tiempoCarga" class="border p-2 rounded w-full" placeholder="Ejemplo: 30">
+    </label>
     <button onclick="confirmarReserva()" class="bg-blue-600 text-white px-4 py-2 rounded mt-4">Confirmar Reserva</button>
   </div>
 </div>
@@ -58,16 +68,9 @@
               function (position) {
                 const lat = position.coords.latitude;
                 const lon = position.coords.longitude;
-                console.log("Ubicación obtenida:", lat, lon);
                 document.getElementById("mapaCargadores").src =
                         `https://map.openchargemap.io/?mode=embedded&latitude=${lat}&longitude=${lon}&zoom=14`;
-              },
-              function (error) {
-                console.warn("⚠ No se pudo obtener la ubicación. Se usará la ubicación por defecto (Madrid).", error);
-              }
-      );
-    } else {
-      console.warn("⚠ Geolocalización no es soportada en este navegador.");
+              });
     }
   }
 
@@ -82,16 +85,20 @@
   function confirmarReserva() {
     let nombre = document.getElementById('nombre').value;
     let cargador = document.getElementById('cargador').value;
+    let tipo = document.getElementById('tipoCargador').value;
+    let tiempo = document.getElementById('tiempoCarga').value;
+    let precios = { "rapido": 0.50, "estandar": 0.30, "compatible": 0.40 };
+    let costo = tiempo * precios[tipo];
 
-    if (!nombre || !cargador) {
+    if (!nombre || !cargador || !tiempo) {
       alert("Por favor, complete todos los campos");
       return;
     }
 
     let reservas = JSON.parse(localStorage.getItem("cargadoresAsignados")) || [];
-    reservas.push(`${nombre} ha reservado el ${cargador}`);
+    reservas.push(`${nombre} ha reservado el ${cargador} (${tipo}) por ${tiempo} min. Total: ${costo.toFixed(2)}€`);
     localStorage.setItem("cargadoresAsignados", JSON.stringify(reservas));
-    alert("Reserva realizada con éxito");
+    alert(`Reserva realizada con éxito. Su cobro será de ${costo.toFixed(2)}€`);
     cerrarFormularioReserva();
   }
 
@@ -106,12 +113,6 @@
   function confirmarReporte() {
     let nombre = document.getElementById('nombreReporte').value;
     let descripcion = document.getElementById('descripcionReporte').value;
-
-    if (!nombre || !descripcion) {
-      alert("Por favor, complete todos los campos");
-      return;
-    }
-
     let reportes = JSON.parse(localStorage.getItem("incidenciasReportadas")) || [];
     reportes.push(`${nombre} reportó: ${descripcion}`);
     localStorage.setItem("incidenciasReportadas", JSON.stringify(reportes));

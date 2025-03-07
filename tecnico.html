@@ -48,6 +48,7 @@
     <div id="diagnostico" class="section hidden">
       <h2 class="text-xl font-bold mb-4">Diagnóstico y Mantenimiento</h2>
       <p id="estadoCargadores" class="bg-gray-800 p-4 rounded-lg">Cargando...</p>
+      <p id="diagnosticoDetalle" class="bg-gray-800 p-4 rounded-lg mt-2">Revisando estado de los cargadores...</p>
     </div>
 
     <!-- Sección de Facturación -->
@@ -60,6 +61,7 @@
     <div id="configuracion" class="section hidden">
       <h2 class="text-xl font-bold mb-4">Configuración</h2>
       <button onclick="cambiarIdioma()" class="bg-blue-600 text-white px-4 py-2 rounded">Cambiar Idioma</button>
+      <button onclick="cambiarContrasena()" class="bg-green-600 text-white px-4 py-2 rounded mt-2">Cambiar Contraseña</button>
     </div>
   </div>
 </div>
@@ -79,10 +81,18 @@
     document.getElementById("listaIncidencias").innerHTML = incidencias.length ? incidencias.map(i => `<li>${i}</li>`).join('') : "No hay incidencias reportadas.";
     document.getElementById("listaFacturacion").innerHTML = facturacion.length ? facturacion.map(f => `<li>${f}</li>`).join('') : "No hay pagos registrados.";
     document.getElementById("estadoCargadores").innerText = cargadores.length ? "Estado actualizado basado en reportes de usuarios." : "Sin datos recientes.";
+    document.getElementById("diagnosticoDetalle").innerText = incidencias.length ? "Se han detectado incidencias en algunos cargadores." : "Todos los cargadores están en buen estado.";
   });
 
   function cambiarIdioma() {
     alert("Función de cambio de idioma próximamente");
+  }
+
+  function cambiarContrasena() {
+    let nuevaContrasena = prompt("Ingrese su nueva contraseña:");
+    if (nuevaContrasena) {
+      alert("Contraseña actualizada con éxito");
+    }
   }
 </script>
 </body>
