@@ -17,6 +17,8 @@
     <label class="block mb-2">Contraseña: <input type="password" id="contrasena" class="border p-2 rounded w-full" required></label>
     <label class="block mb-2">Confirmar Contraseña: <input type="password" id="confirmarContrasena" class="border p-2 rounded w-full" required></label>
     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded mt-4">Registrar</button>
+    <a href="login.html" class="flex items-center justify-center">ya tengo una cuenta</a>
+
   </form>
 </div>
 
@@ -40,25 +42,11 @@
       contrasena: contrasena
     };
 
-    fetch('../utils/Users.json')
-      .then(response => response.json())
-      .then(data => {
-        data.push(nuevoUsuario);
-        return fetch('../utils/Users.json', {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        });
-      })
-      .then(() => {
-        alert("Usuario registrado con éxito");
-        window.location.href = "login.html";
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+    // Guardar los datos del usuario en una cookie
+    document.cookie = `usuario=${JSON.stringify(nuevoUsuario)}; path=/; max-age=31536000`;
+
+    alert("Usuario registrado con éxito");
+    window.location.href = "login.html";
   });
 </script>
 
