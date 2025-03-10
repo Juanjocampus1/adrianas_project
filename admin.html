@@ -56,11 +56,24 @@
   <div class="flex-1 p-6">
     <div id="gestion" class="section">
       <h1 class="text-2xl font-bold mb-6">Gestión de Cargadores</h1>
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-6">
-        <div class="bg-purple-200 p-4 rounded-lg"><h2 class="font-bold">Carga Rápida</h2></div>
-        <div class="bg-yellow-100 p-4 rounded-lg"><h2 class="font-bold">Carga Estándar</h2></div>
-        <div class="bg-green-100 p-4 rounded-lg"><h2 class="font-bold">Carga Compatible</h2></div>
-        <div class="bg-blue-100 p-4 rounded-lg"><h2 class="font-bold">Carga Tesla</h2></div>
+        <div class="bg-purple-200 p-4 rounded-lg">
+          <h2 class="font-bold">Carga Rápida</h2>
+          <ul id="cargaRapida" class="text-sm"></ul>
+        </div>
+        <div class="bg-yellow-100 p-4 rounded-lg">
+          <h2 class="font-bold">Carga Estándar</h2>
+          <ul id="cargaEstandar" class="text-sm"></ul>
+        </div>
+        <div class="bg-green-100 p-4 rounded-lg">
+          <h2 class="font-bold">Carga Compatible</h2>
+          <ul id="cargaCompatible" class="text-sm"></ul>
+        </div>
+        <div class="bg-blue-100 p-4 rounded-lg">
+          <h2 class="font-bold">Carga Tesla</h2>
+          <ul id="cargaTesla" class="text-sm"></ul>
+        </div>
       </div>
     </div>
 
@@ -76,49 +89,6 @@
         </ul>
       </div>
     </div>
-
-    <div id="logs" class="section hidden">
-      <h1 class="text-2xl font-bold mb-6">Logs de Auditoría</h1>
-      <div class="bg-white p-4 rounded-lg shadow">
-        <h2 class="font-bold mb-4">Últimos Registros</h2>
-        <ul>
-          <li class="mb-2">[2025-03-01 14:32] Usuario admin inició sesión</li>
-          <li class="mb-2">[2025-03-01 14:35] Se modificó la configuración del sistema</li>
-          <li class="mb-2">[2025-03-01 15:00] Usuario soporte realizó una auditoría</li>
-          <li class="mb-2">[2025-03-01 15:10] Se generó un informe de actividad</li>
-        </ul>
-      </div>
-    </div>
-
-    <div id="reservas" class="section hidden">
-      <h1 class="text-2xl font-bold mb-6">Historial de Reservas</h1>
-      <div class="bg-white p-4 rounded-lg shadow">
-        <h2 class="font-bold mb-4">Reservas Recientes</h2>
-        <ul>
-          <li class="mb-2">[2025-03-02 10:15] Reserva de usuario Juan Pérez</li>
-          <li class="mb-2">[2025-03-02 11:30] Reserva de usuario Ana López</li>
-        </ul>
-      </div>
-    </div>
-
-    <div id="usuarios" class="section hidden">
-      <h1 class="text-2xl font-bold mb-6">Gestión de Usuarios</h1>
-      <div class="bg-white p-4 rounded-lg shadow">
-        <h2 class="font-bold mb-4">Lista de Usuarios</h2>
-        <ul>
-          <li class="mb-2">Admin - admin@example.com</li>
-          <li class="mb-2">Usuario1 - user1@example.com</li>
-        </ul>
-      </div>
-    </div>
-
-    <div id="configuracion" class="section hidden">
-      <h1 class="text-2xl font-bold mb-6">Configuración General</h1>
-      <div class="bg-white p-4 rounded-lg shadow">
-        <h2 class="font-bold mb-4">Opciones del Sistema</h2>
-        <p>Ajustes de configuración y preferencias del sistema.</p>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -129,6 +99,66 @@
     });
     document.getElementById(sectionId).classList.remove('hidden');
   }
+
+  function cargarReservas() {
+    let reservas = JSON.parse(localStorage.getItem("cargadoresAsignados")) || [];
+
+    let cargaRapida = document.getElementById('cargaRapida');
+    let cargaEstandar = document.getElementById('cargaEstandar');
+    let cargaCompatible = document.getElementById('cargaCompatible');
+    let cargaTesla = document.getElementById('cargaTesla');
+
+    // Limpiar listas antes de agregar nuevas reservas
+    cargaRapida.innerHTML = "";
+    cargaEstandar.innerHTML = "";
+    cargaCompatible.innerHTML = "";
+    cargaTesla.innerHTML = "";
+
+    let reservasPorUsuario = {};
+
+    // Organizar reservas por usuario
+    reservas.forEach(reserva => {
+      let partes = reserva.split(" ha reservado el ");
+      if (partes.length === 2) {
+        let usuario = partes[0];
+        let detalles = partes[1];
+
+        if (!reservasPorUsuario[usuario]) {
+          reservasPorUsuario[usuario] = [];
+        }
+
+        reservasPorUsuario[usuario].push(detalles);
+      }
+    });
+
+    // Insertar en las listas correspondientes
+    for (let usuario in reservasPorUsuario) {
+      let liHeader = document.createElement('li');
+      liHeader.innerHTML = `<strong>${usuario}</strong>`;
+      liHeader.classList.add("mt-2", "text-lg", "underline");
+
+      reservasPorUsuario[usuario].forEach(detalle => {
+        let li = document.createElement('li');
+        li.textContent = detalle;
+
+        if (detalle.includes("(rapido)")) {
+          cargaRapida.appendChild(liHeader.cloneNode(true));
+          cargaRapida.appendChild(li);
+        } else if (detalle.includes("(estandar)")) {
+          cargaEstandar.appendChild(liHeader.cloneNode(true));
+          cargaEstandar.appendChild(li);
+        } else if (detalle.includes("(compatible)")) {
+          cargaCompatible.appendChild(liHeader.cloneNode(true));
+          cargaCompatible.appendChild(li);
+        } else if (detalle.includes("(tesla)")) {
+          cargaTesla.appendChild(liHeader.cloneNode(true));
+          cargaTesla.appendChild(li);
+        }
+      });
+    }
+  }
+
+  cargarReservas();
 </script>
 </body>
 </html>
