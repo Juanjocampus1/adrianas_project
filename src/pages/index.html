@@ -58,6 +58,15 @@
 </div>
 
 <script>
+  function checkSessionCookie() {
+    const sessionCookie = document.cookie.split('; ').find(row => row.startsWith('session='));
+    if (!sessionCookie) {
+      window.location.href = "login.html";
+    }
+  }
+
+  checkSessionCookie();
+
   function cerrarSesion() {
     window.location.href = "login.html";
   }
